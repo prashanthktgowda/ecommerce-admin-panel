@@ -66,25 +66,25 @@ To build a full-stack admin dashboard where an admin can manage products and ord
 *   **Logout Functionality.**
 
 ### Dashboard
-![Admin Dashboard](![alt text](image-1.png))
+[alt text](image-1.png)
 *   **Homepage:** Displays quick statistics:
     *   Total number of products.
     *   Total number of orders.
 
 ### Product Listing
-![Product Listing Page](![alt text](image-2.png))
+[alt text](image-2.png)
 *A comprehensive table displaying all products with options to edit or delete.*
 
 ### Add Product Form
-![Add Product Form](![alt text](image-3.png))
+[alt text](image-3.png)
 *Form for adding new products, including details like name, price, quantity, and image upload.*
 
 ### Order Listing
-![Order Listing Page](![alt text](image-5.png))
+[alt text](image-5.png)
 *Displays all customer orders with relevant details like customer name, total price, and status.*
 
 ### API Testing using Post man
-![Order Listing Page](![alt text](image-4.png))
+[alt text](image-4.png)
 *Showcasing API testing using Postman desktop*
 
 
