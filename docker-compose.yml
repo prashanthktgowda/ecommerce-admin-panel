@@ -1,0 +1,72 @@
+
+version: '3.8' # Specify docker-compose version
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend # Path to backend Dockerfile directory
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001" # Map host port 5001 to container port 5001
+    environment:
+      # Define environment variables for the backend
+      # These will override values in a .env file if it were copied (but we .dockerignore it)
+      PORT: 5001
+      MONGO_URI: mongodb://mongo:27017/ecommerce_admin # 'mongo' is the service name of MongoDB
+      JWT_SECRET: yourSuperStrongRandomSecretKeyForJWT_InDockerCompose # CHANGE THIS!
+    depends_on:
+      - mongo # Ensure mongo starts before backend
+    volumes:
+      # For development: mount local code into container for live reloading (if nodemon is used)
+      # - ./backend:/usr/src/app/backend
+      # - /usr/src/app/backend/node_modules # Exclude node_modules from host mount
+      # For production: typically you don't mount source code
+      - backend_uploads:/usr/src/app/backend/uploads # Persist uploaded files
+    networks:
+      - app-network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Map host port 3000 to container Nginx port 80
+    depends_on:
+      - backend # Optional: ensure backend is up, though Nginx will retry
+    environment:
+      # If your React app needs to know the backend URL (e.g., for API calls)
+      # and it's not hardcoded or proxied correctly by Nginx
+      # Note: Create React App build is static, so runtime env vars need special handling
+      # (e.g., injecting into index.html or using an entrypoint script).
+      # For this setup, API calls go to localhost:5001, which Nginx won't proxy directly.
+      # The React app is built to call whatever `axiosInstance` points to.
+      # If `axiosInstance` points to `http://localhost:5001/api`, it will try to call
+      # the host's port 5001 from within the frontend container, which might not work directly
+      # without further Nginx proxying or correct network setup.
+      # Simpler: Ensure axiosInstance calls the *exposed backend service on the host* or
+      # use Nginx as a reverse proxy (more complex setup).
+      # For now, ensure axiosInstance in frontend/src/api/axiosInstance.js is:
+      # baseURL: 'http://localhost:5001/api', as it will be accessed from the user's browser.
+      REACT_APP_API_URL: http://localhost:5001/api # This is an example, how CRA uses it
+    networks:
+      - app-network
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest # Use official MongoDB image
+    ports:
+      - "27017:27017" # Map host port 27017 to container port 27017
+    volumes:
+      - mongo_data:/data/db # Persist MongoDB data
+    networks:
+      - app-network
+
+volumes: # Define named volumes for data persistence
+  mongo_data:
+  backend_uploads:
+
+networks: # Define a custom network for services to communicate
+  app-network:
+    driver: bridge
