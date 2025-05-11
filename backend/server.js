@@ -6,7 +6,6 @@ const cors = require('cors');
 const path = require('path'); // For serving static files (uploads)
 const request = require('supertest'); // For making HTTP requests
 const app = express();
-const request = require('supertest'); // For making HTTP requests
 
 
 // Middleware
