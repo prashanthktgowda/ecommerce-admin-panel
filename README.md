@@ -172,7 +172,7 @@ The project follows a typical client-server architecture with a separate fronten
 ### Backend Setup
 1.  Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/prashanthktgowda/ecommerce-admin-panel
     cd ecommerce-admin-panel/backend
     ```
 2.  Install dependencies:
