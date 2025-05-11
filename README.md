@@ -91,7 +91,7 @@ To build a full-stack admin dashboard where an admin can manage products and ord
     *   MongoDB (NoSQL database, run via Docker)
 *   **Development Tools:**
     *   VS Code
-    *   Postman/Insomnia (for API testing)
+    *   Postman (for API testing)
     *   Nodemon (for backend auto-restarts)
     *   Git & GitHub (for version control)
 
@@ -226,7 +226,7 @@ The project follows a typical client-server architecture with a separate fronten
 
 3.  **Initial Admin User Setup:**
     *   The first time you run the application, you'll need to create an admin user. The backend includes a `/api/auth/register` endpoint for this.
-    *   You can use Postman/Insomnia to send a `POST` request to `http://localhost:5001/api/auth/register` with a JSON body:
+    *   You can use Postman to send a `POST` request to `http://localhost:5001/api/auth/register` with a JSON body:
         ```json
         {
             "email": "admin@example.com",
