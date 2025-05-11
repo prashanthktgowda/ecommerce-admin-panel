@@ -59,15 +59,34 @@ To build a full-stack admin dashboard where an admin can manage products and ord
     *   Orders are pre-filled in the database for demonstration (no checkout flow implemented).
 
 ### Authentication
+![Admin Login Page](![alt text](image.png))
 *   **Admin Login:** Secure login page for administrators (email/password).
 *   **JWT (JSON Web Token) Authentication:** Tokens are issued upon successful login and used to authorize access to protected API routes.
 *   **Protected Routes:** Product and order management pages and APIs are accessible only to authenticated administrators.
 *   **Logout Functionality.**
 
 ### Dashboard
+![Admin Dashboard](![alt text](image-1.png))
 *   **Homepage:** Displays quick statistics:
     *   Total number of products.
     *   Total number of orders.
+
+### Product Listing
+![Product Listing Page](![alt text](image-2.png))
+*A comprehensive table displaying all products with options to edit or delete.*
+
+### Add Product Form
+![Add Product Form](![alt text](image-3.png))
+*Form for adding new products, including details like name, price, quantity, and image upload.*
+
+### Order Listing
+![Order Listing Page](![alt text](image-5.png))
+*Displays all customer orders with relevant details like customer name, total price, and status.*
+
+### API Testing using Post man
+![Order Listing Page](![alt text](image-4.png))
+*Showcasing API testing using Postman desktop*
+
 
 ## Tech Stack
 
